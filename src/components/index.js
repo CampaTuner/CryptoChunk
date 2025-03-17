@@ -7,6 +7,6 @@ import HeroSection from "./herosection/HeroSection";
 import TrendingCoins from "./trendingcoins/TrendingCoins";
 import MarketCapData from "./MarketCap/MarketCapData";
 import Loading from "./loading/Loading";
-{/* <Loading */}
+import Footer from "./footer/Footer";
 
-export {Navbar, ToogleBtn, Input, Logo, Button, HeroSection, TrendingCoins, MarketCapData, Loading}
+export {Navbar, Footer,ToogleBtn, Input, Logo, Button, HeroSection, TrendingCoins, MarketCapData, Loading}

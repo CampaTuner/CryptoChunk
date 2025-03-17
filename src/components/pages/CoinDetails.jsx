@@ -1,12 +1,15 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import Chart from '../Chart/Chart'
-
+import TopGainers from '../Chart/TopGainers'
+import CoinDescription from '../Chart/CoinDescription'
 function CoinDetails() {
+
   return (
     <div>
-        <Chart/>
-
+      <Chart />
+      <TopGainers />
+      <CoinDescription />
     </div>
   )
 }

@@ -23,19 +23,23 @@ function Navbar() {
   let pages = [
     {
       name: "Home",
-      icon: <HomeIcon />
+      icon: <HomeIcon />,
+      url: "",
     },
     {
       name: "Profile",
-      icon: <PersonIcon />
+      icon: <PersonIcon />,
+      url: "",
     },
     {
       name: "Coins",
-      icon: <CurrencyBitcoinIcon />
+      icon: <CurrencyBitcoinIcon />,
+      url: "",
     },
     {
       name: "About me",
-      icon: <InfoIcon />
+      icon: <InfoIcon />,
+      url: "",
     },
   ]
 
@@ -63,7 +67,7 @@ function Navbar() {
       <div className="flex max-2xl:gap-6 max-lg:gap-[15px] dark:text-white max-md:hidden">
         {
           pages.map((info) => {
-            return <Page key={info.name} name={info.name} icon={info.icon} />
+            return <Page key={info.name} name={info.name} icon={info.icon} url={info.url} />
           })
         }
       </div>

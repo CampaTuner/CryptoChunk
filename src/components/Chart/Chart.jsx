@@ -11,19 +11,27 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import Loading from '../loading/Loading';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import Button from '../button/Button';
+import { useDispatch, useSelector } from "react-redux";
+import { setDetails } from '../../store/Slices/DetailsSlice';
 
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function Chart() {
+
+  const dispatch = useDispatch();
+
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [coinDetails, setCoinDetails] = useState({
-    coinName : '',
-    coinSymbol : '',
-    coinDescription : '',
-    coinImage : '',
-    coinOfficialPage : '',
+    coinName: '',
+    coinSymbol: '',
+    coinDescription: '',
+    coinImage: '',
+    coinOfficialPage: '',
   })
 
   async function fetchCoinDetails() {
@@ -38,18 +46,20 @@ function Chart() {
       const url = `https://api.coingecko.com/api/v3/coins/${id}`;
       const response = await fetch(url);
       const data = await response.json();
-      setCoinDetails({
+
+      dispatch(setDetails({
         coinName: data.name,
         coinSymbol: data.symbol,
         coinDescription: data.description.en,
         coinImage: data.image.large,
         coinOfficialPage: data.links.homepage[0],
-      });
+      }));
+
     } catch (error) {
       console.error("Error fetching coin details:", error);
     }
   }
-  
+
   useEffect(() => {
     fetchCoinDetails();
     fetchCoinDescriptions();
@@ -100,11 +110,12 @@ function Chart() {
         {data.length > 0 ? (
           <Line data={chartData} options={options} />
         ) : (
-          <p>Loading chart...</p>
+          <Loading />
         )}
       </div>
-      <div>
-        mm
+      <div className='flex items-center justify-between'>
+        <Button text={"Add to Whistlist"} style={"gap-1 my-4"} icon={<FavoriteBorderRoundedIcon sx={{ color: 'white' }} fontSize='small' />} />
+        <Button text={`${id.length > 7 ? 'Buy COIN' : `Buy ${id.toLocaleUpperCase()}`}`} />
       </div>
     </div>
   );
